@@ -1,3 +1,5 @@
+require_relative "models"
+
 User.create(
   email: 'fausto@gmail.com',
   password: 'password',

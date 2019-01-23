@@ -122,6 +122,20 @@ get '/user/:id/posts' do
   erb :posts
 end
 
+get '/user/:user_id/posts/:id' do
+  begin
+    @post = Post.find(params[:id])
+    if params[:user_id].to_i == @post.user_id
+      erb :show_post
+    else
+      raise 'error'
+    end
+  rescue
+    flash[:warning] = 'There is no post id associated with this user!'
+    redirect "/user/#{params[:user_id]}/posts"
+  end
+end
+
   get '/login' do
     erb :login
   end

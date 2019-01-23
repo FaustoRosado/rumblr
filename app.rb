@@ -203,37 +203,34 @@ end
   post '/signup' do
     email = params[:email]
     password = params[:password]
-    # reenter_password = params[:reenter_password]
+    reenter_password = params[:reenter_password]
     firstname = params[:firstname]
     lastname = params[:lastname]
     birthday = params[:birthday]
     @validate = Validate.register(email, password, reenter_password, firstname, lastname, birthday)
   
-
-  end
-
-  get '/user/posts/new' do
-    erb :new_post
-  end
-  
-  post '/posts' do
-    title = params[:title]
-    validate = Validate.post(title)
-    if validate == true
-      Post.create(
-        title: title,
-        content: params[:content],
-        user_id: session[:user_id],
-        image_url: params[:image_url],
-        datetime: Time.now.utc
+    if User.find_by(email: email.downcase)
+      flash[:warning] = 'That email is already taken.'
+      redirect '/signup'
+    elsif @validate == true
+      User.create(
+        email: email.downcase,
+        password: password,
+        firstname: firstname,
+        lastname: lastname,
+        birthday: birthday
       )
+      erb :signup
     else
-      flash[:warning] = validate
+      @errors = [@validate.slice!(0)]
+      @validate.each do |x|
+        @errors << x
+      end
+      flash[:warning] = @errors.join('<br />')
+      redirect '/signup'
     end
-  
-    redirect "/user/#{session[:user_id]}/posts"
   end
-
+  
   get '/*' do
     erb :pagenotfound
   end

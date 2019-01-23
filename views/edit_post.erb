@@ -1,0 +1,17 @@
+<div style="width:70%" id="show-post-buttons">
+  <button class="btn btn-secondary" onclick="location.href='/user/<%= @post.user_id %>/posts/<%= @post.id %>'">Back</button>
+</div>
+
+<div class="container" id="edit-post">
+  <form action="/user/<%= @user.id %>/posts/<%= @post.id %>/edit" method="post">
+    <h3>Edit post</h3>
+    <textarea id="post-title" name="title" placeholder="Title" required><%= @post.title %></textarea>
+    <textarea id="post-content" name="content" placeholder="Content" required><%= @post.content %></textarea>
+    <textarea id="post-image" name="image_url" placeholder="Image url (optional)"><%= @post.image_url %></textarea>
+    <input type="submit" id="post-btn" class="btn btn-info">
+  </form>
+  <form action="/delete_post/<%= @post.id %>" method="post">
+    <input type="hidden" name="_method" value="DELETE">
+    <input type="submit" class="btn btn-danger" value="Delete post">
+  </form>
+</div>

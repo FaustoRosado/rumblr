@@ -6,3 +6,14 @@
   <input class="account-form-btn btn btn-info" type="submit" value="Change password">
 </form>
 
+<form class="account-form" action="/account" method="post">
+  <input type="hidden" name="_method" value="DELETE">
+  <h5>Delete account</h5>
+  <p>
+    Deleting your account is a <span style="color:red">permanent</span> action.
+    Enter your e-mail and password if you are sure you want to delete your account.
+  </p>
+  <input type="text" name="email" placeholder="Email" required>
+  <input type="password" name="password" placeholder="Password" required>
+  <input type="submit" class="account-form-btn btn-danger" value="Delete account">
+</form>

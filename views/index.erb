@@ -26,7 +26,7 @@
                           </a>
                         </h5>
                         <h6 class="card-text"><%= post.datetime.strftime("%B %d, %Y") %>, <%= post.datetime.strftime("%I:%M%p") %> UTC</h6>
-                        <p class="card-text card-content"><%= post.content.gsub(/\r?\n/, '<br />') %></p>
+                        <p class="card-text card-content"><%= post.content %></p>
                       </div>
                     </div>
                   <% else %>
@@ -41,7 +41,7 @@
                           </a>
                         </h5>
                         <h6 class="card-text"><%= post.datetime.strftime("%B %d, %Y") %>, <%= post.datetime.strftime("%I:%M%p") %> UTC</h6>
-                        <p class="card-text card-content"><%= post.content.gsub(/\r?\n/, '<br />') %></p>
+                        <p class="card-text card-content"><%= post.content %></p>
                       </div>
                     </div>
                   <% end %>

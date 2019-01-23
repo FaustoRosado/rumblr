@@ -8,7 +8,7 @@ end
 configure :development do
   set :database, ENV['DATABASE_URL']
 end
-
+x 
 
 class User < ActiveRecord::Base
   has_many :posts

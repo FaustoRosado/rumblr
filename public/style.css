@@ -48,7 +48,7 @@
 
 #main-header {
   color: white;
-  background: #141B25;
+  background: rgb(31, 146, 112);
   padding: 2% 0;
   justify-content: space-between;
   z-index: 1050;
@@ -133,7 +133,7 @@
 
 #landing2 {
   height: 100vh;
-  background: white url("../media/landing2.jpeg") no-repeat center fixed;
+  background: white url("../media/landing2.jpg") no-repeat center fixed;
   background-size: cover; }
   #landing2 #landing2-content {
     top: 30%; }

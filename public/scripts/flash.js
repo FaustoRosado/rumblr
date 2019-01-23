@@ -9,4 +9,4 @@ if (document.querySelector('.remove-btn')) {
   };
 
   removeBtn.onclick = close;
-}
+}     

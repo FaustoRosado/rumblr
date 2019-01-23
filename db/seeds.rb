@@ -1,4 +1,4 @@
-require_relative "models"
+require_relative "../models"
 
 User.create(
   email: 'fausto@gmail.com',

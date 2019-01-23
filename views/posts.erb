@@ -1,10 +1,51 @@
 <div id="posts-container" class="container">
   <h3 style="margin-top: 2%" class="card-text"><%= @user.firstname %> <%= @user.lastname %></h3>
   <% @posts && @posts.each do |post| %>
-  <section>
-
-  </section>
-
+    <section>
+      <div class="container py-3 horizontal">
+        <div class="card">
+          <div class="row inner-card">
+            <% if post.image_url.length > 0 %>
+              <div class="col-md-4 img-container">
+                <img src=<%= url(post.image_url) %>>
+              </div>
+              <div class="col-md-8 px-3">
+                <div class="card-block px-3">
+                  <h4 class="card-title">
+                    <a href="/user/<%= post.user_id %>/posts/<%= post.id %>"><%= post.title %></a>
+                  </h4>
+                  <h5 class="card-text">
+                    <a href="/user/<%= post.user_id %>/posts">
+                      <%= post.user.firstname %> <%= post.user.lastname %>
+                    </a>
+                  </h5>
+                  <h6 class="card-text"><%= post.datetime.strftime("%B %d, %Y") %>, <%= post.datetime.strftime("%I:%M%p") %> UTC</h6>
+                  <p class="card-text card-content"><%= post.content.gsub(/\r?\n/, '<br />') %></p>
+                </div>
+              </div>
+            <% else %>
+              <div class="col-md-12 px-3">
+                <div class="card-block px-3">
+                  <h4 class="card-title">
+                    <a href="/user/<%= post.user_id %>/posts/<%= post.id %>"><%= post.title %></a>
+                  </h4>
+                  <h5 class="card-text">
+                    <a href="/user/<%= post.user_id %>/posts">
+                      <%= post.user.firstname %> <%= post.user.lastname %>
+                    </a>
+                  </h5>
+                  <h6 class="card-text"><%= post.datetime.strftime("%B %d, %Y") %>, <%= post.datetime.strftime("%I:%M%p") %> UTC</h6>
+                  <p class="card-text card-content"><%= post.content.gsub(/\r?\n/, '<br />') %></p>
+                </div>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </section>
+  <% end %>
+  <%= will_paginate @paginate %>
+</div>
 
 
 

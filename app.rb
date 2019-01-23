@@ -23,4 +23,13 @@ get '/' do
   erb :index
 end
 
+post '/' do
+  email = params[:email]
+
+  if session[:user_id]
+    session[:user_id] = nil
+
+    redirect '/'
+  end
+
 

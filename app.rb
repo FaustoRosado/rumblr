@@ -14,7 +14,7 @@ enable :sessions
 
 get '/' do
   begin
-    @posts = Post.all.order(datetime: :desc).limit(20).offset(params[:page])
+    @posts = Post.all.order.limit(20)
     @paginate = Post.paginate(:page => params[:page], :per_page => 20)
   rescue
     @posts = nil

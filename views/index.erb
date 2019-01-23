@@ -1,0 +1,7 @@
+<% if session[:user_id] %>
+<% if @posts && @posts.length > 0 %>
+<div id="front-page" class="container">
+      <div id="front-page-header">
+        <h3>Latest posts</h3>
+        <button onclick="location.href='/user/posts/new'" class="btn btn-info">Add post</button>
+      </div>

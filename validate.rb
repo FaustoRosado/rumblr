@@ -9,5 +9,8 @@ class Validate
   end
 
   def self.post(title)
+    if title.length == 0
+      return 'You must have a title.'
+    end
     
 end

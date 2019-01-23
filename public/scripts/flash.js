@@ -1,0 +1,1 @@
+if (document.querySelector('.remove-btn'))

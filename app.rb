@@ -78,6 +78,26 @@ post '/account/password' do
   redirect '/account'
 end
 
+delete '/delete_post/:id' do
+  Post.find(params[:id]).destroy
+  flash[:info] = 'Your post has been deleted.'
+  redirect "/user/#{session[:user_id]}/posts"
+end
+
+delete '/account' do
+  user = User.find(session[:user_id])
+
+  if params[:email] == user.email && params[:password] == user.password
+    flash[:info] = 'Your account has been successfully deleted.'
+    User.find(session[:user_id]).destroy
+    session[:user_id] = nil
+    redirect '/'
+  else
+    flash[:warning] = 'Either your email or password was incorrect.'
+    redirect '/account'
+  end
+end
+
   get '/user/:id' do
     begin
       @user = User.find(params[:id])

@@ -1,0 +1,56 @@
+#front-page-header {
+  display: flex;
+  justify-content: space-between;
+  align-self: center;
+}
+
+#show-post-buttons {
+  display: flex;
+  justify-content: space-between;
+  width: 90%;
+  margin: 15px auto 0 auto;
+}
+
+#show-post-with-img {
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  width: 88%;
+}
+
+#posts-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+section {
+  min-width: 100%;
+
+  .horizontal {
+    width: 100%;
+
+    .card {
+      padding: 20px;
+
+      .inner-card {
+        align-items: center;
+
+        .card-content {
+          max-height: 30vh;
+          overflow: auto;
+        }
+
+        .img-container {
+          margin: 10px 0;
+          padding: 5px;
+          text-align: center;
+
+          img {
+            max-width: 100%;
+          }
+        }
+      }
+    }
+  }
+}

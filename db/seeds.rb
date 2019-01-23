@@ -9,17 +9,17 @@ User.create(
 )
 
 User.create(
-  email: 'bola@gmail.com',
-  password: 'password',
-  firstname: 'Bola',
-  lastname: 'B',
-  birthday: '01/01/1970'
-)
-
-User.create(
   email: 'samantha@gmail.com',
   password: 'password',
   firstname: 'Samantha',
   lastname: 'SR',
   birthday: '09/25/1980'
+)
+
+User.create(
+  email: 'johndoe@gmail.com',
+  password: 'password',
+  firstname: 'John',
+  lastname: 'D',
+  birthday: '01/01/2000'
 )

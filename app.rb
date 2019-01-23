@@ -98,19 +98,19 @@ delete '/account' do
   end
 end
 
-  get '/user/:id' do
-    begin
-      @user = User.find(params[:id])
-      @posts = @user.posts.order(datetime: :desc).limit(20).offset(params[:page])
-      @paginate = @posts.paginate(page: params[:page], per_page: 20)
-    rescue
-      flash[:warning] = 'There are no posts associated with this user!'
-      redirect '/'
-    end
-    erb :posts
+get '/user/:id' do
+  begin
+    @user = User.find(params[:id])
+    @posts = @user.posts.order(datetime: :desc).limit(20).offset(params[:page])
+    @paginate = @posts.paginate(page: params[:page], per_page: 20)
+  rescue
+    flash[:warning] = 'There are no posts associated with this user!'
+    redirect '/'
   end
+  erb :posts
+end
   
-  get '/user/:id/posts' do
+get '/user/:id/posts' do
     begin
       @user = User.find(params[:id])
       @posts = @user.posts.order(datetime: :desc).limit(20).offset(params[:page])

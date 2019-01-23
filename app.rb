@@ -1,12 +1,12 @@
 require 'sinatra'
 require 'sinatra/activerecord'
 require 'sinatra/flash'
-# require 'sinatra/reloader'
+require 'sinatra/reloader'
 # to add pagination see paginate gem
 
-# require_relative 'validate'
-# require 'will_paginate'
-# require 'will_paginate/active_record'
+require_relative 'validate'
+require 'will_paginate'
+require 'will_paginate/active_record'
 
 require_relative 'models'
 
@@ -14,8 +14,8 @@ enable :sessions
 
 get '/' do
   begin
-    @posts = Post.all
-    
+    @posts = Post.all.order(datetime: :desc).limit(20).offset(params[:page])
+    @paginate = Post.paginate(:page => params[:page], :per_page => 20)
   rescue
     @posts = nil
   end
@@ -28,9 +28,17 @@ post '/' do
 
   if session[:user_id]
     session[:user_id] = nil
-
-    redirect '/'
+  elsif Validate.login(email, params[:password])
+    @user = User.find_by(email: email.downcase)
+    session[:user_id] = @user.id
+    flash[:info] = "You have successfully logged in, #{@user.firstname}."
+  else
+    flash[:warning] = 'Invalid username or password.'
   end
+
+  redirect '/'
+end
+
 
   get '/user/:id' do
     begin

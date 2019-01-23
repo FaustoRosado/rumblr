@@ -98,3 +98,7 @@ post '/' do
   
     redirect "/user/#{session[:user_id]}/posts"
   end
+
+  get '/*' do
+    erb :pagenotfound
+  end

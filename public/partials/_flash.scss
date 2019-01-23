@@ -1,0 +1,34 @@
+.flash {
+  border-radius: 2px;
+  padding: 20px;
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.flash.info {
+  background-color: #7cee7c;
+}
+
+.flash.warning {
+  background-color: #ee7c7c;
+}
+
+.flash a, .flash a:link, .flash a:active, .flash a:visited {
+  position: absolute;
+  right: 20px;
+  text-decoration:  none;
+  color: black;
+  animation: beckon;
+  animation-duration: 3s;
+  animation-iteration-count: infinite;
+}
+
+.flash a:hover {
+  color: white;
+}
+
+.hide {
+  display: none;
+}

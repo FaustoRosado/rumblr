@@ -39,6 +39,44 @@ post '/' do
   redirect '/'
 end
 
+get '/account' do
+  if session[:user_id]
+    erb :account
+  else
+    flash[:warning] = 'Sign up to start blogging.'
+    redirect '/signup'
+  end
+end
+
+post '/account/password' do
+  current = params[:current]
+  new = params[:new]
+  new_again = params[:new_again]
+  user = User.find(session[:user_id])
+
+  @errors = []
+
+  if current != user.password
+    @errors << 'The current password is not correct.'
+  end
+
+  if new.length < 6 || new.length > 32
+    @errors << 'Your password must be between 6 and 32 characters.'
+  end
+
+  if new != new_again
+    @errors << 'The new passwords do not match.'
+  end
+
+  if @errors.empty?
+    user.update(password: new)
+    flash[:info] = 'Your password has been successfully updated.'
+  else
+    flash[:warning] = @errors.join('<br />')
+  end
+
+  redirect '/account'
+end
 
   get '/user/:id' do
     begin

@@ -33,3 +33,9 @@ post '/' do
   end
 
 
+
+  get '/login' do
+    erb :login
+  end
+
+

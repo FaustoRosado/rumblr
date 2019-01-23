@@ -39,3 +39,18 @@ post '/' do
   end
 
 
+  get '/signup' do
+    erb :signup
+  end
+  
+  post '/signup' do
+    email = params[:email]
+    password = params[:password]
+    # reenter_password = params[:reenter_password]
+    firstname = params[:firstname]
+    lastname = params[:lastname]
+    birthday = params[:birthday]
+    @validate = Validate.register(email, password, reenter_password, firstname, lastname, birthday)
+  
+
+  end

@@ -111,16 +111,16 @@ get '/user/:id' do
 end
   
 get '/user/:id/posts' do
-    begin
-      @user = User.find(params[:id])
-      @posts = @user.posts.order(datetime: :desc).limit(20).offset(params[:page])
-    #   @paginate = @posts.paginate(:page => params[:page], :per_page => 20)
-    # rescue
-      flash[:warning] = 'This user has no posts!'
-      redirect '/'
-    end
-    erb :posts
+  begin
+    @user = User.find(params[:id])
+    @posts = @user.posts.order(datetime: :desc).limit(20).offset(params[:page])
+    @paginate = @posts.paginate(:page => params[:page], :per_page => 20)
+  rescue
+    flash[:warning] = 'This user has no posts!'
+    redirect '/'
   end
+  erb :posts
+end
 
   get '/login' do
     erb :login

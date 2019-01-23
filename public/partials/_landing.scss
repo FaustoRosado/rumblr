@@ -1,0 +1,79 @@
+#register {
+  opacity: 0.95;
+  padding: 30px;
+  border-radius: 30px;
+  color: white;
+  position: sticky;
+  padding: 0;
+  margin: 0;
+  height: 0;
+  z-index: 1;
+  width: 40%;
+  top: 20%;
+  left: 5%;
+}
+
+.landing-content {
+  font-size: 2em;
+  width: 40%;
+  position: relative;
+  color: white;
+  left: 55%;
+  top: 14%;
+  background: rgba(211,211,211,0.7);
+  border-radius: 30px;
+  padding: 30px;
+}
+
+#landing1 {
+  position: relative;
+  height: 100vh;
+  background: white url("../media/landing.gif") no-repeat center fixed;
+  background-size: cover;
+}
+
+#landing2 {
+  height: 100vh;
+  background: white url("../media/landing2.jpeg") no-repeat center fixed;
+  background-size: cover;
+
+  #landing2-content {
+    top: 30%;
+  }
+}
+
+#landing3 {
+  height: 100vh;
+  background: white url("../media/landing3.jpg") no-repeat center fixed;
+  background-size: cover;
+
+  #landing3-content {
+    top: 35%;
+  }
+}
+
+#get-started {
+  height: 100vh;
+  background: white url(../media/landing.jpg) no-repeat center fixed;
+  background-size: cover;
+
+  #get-started-content {
+    background: rgba(200,200,200,0.8);
+    padding: 30px;
+    border-radius: 30px;
+    color: black;
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    button {
+      margin-top: 3%;
+      width: 40%;
+    }
+  }
+}

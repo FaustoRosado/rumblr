@@ -1,0 +1,51 @@
+<div id="show-post-buttons">
+  <button class="btn btn-secondary" onclick="location.href='/user/<%= @post.user_id %>/posts'">Back</button>
+  <% if @post.user_id == session[:user_id] %>
+    <button onclick="location.href='/user/<%= @post.user_id %>/posts/<%= @post.id %>/edit'" class="btn btn-info">Edit post</button>
+  <% end %>
+</div>
+
+<section>
+  <div class="container py-3 horizontal">
+    <div style="border:none" class="card">
+      <div class="row inner-card">
+        <% if @post.image_url.length > 0 %>
+          <div id="show-post-with-img">
+            <h4 class="card-title">
+              <%= @post.title %>
+            </h4>
+            <h5 class="card-text">
+              <a href="/user/<%= @post.user_id %>/posts">
+                <%= @post.user.firstname %> <%= @post.user.lastname %>
+              </a>
+            </h5>
+            <h6 class="card-text"><%= @post.datetime.strftime("%B %d, %Y") %>, <%= @post.datetime.strftime("%I:%M%p") %> UTC</h6>
+          </div>
+          <div style="margin: 3% auto; max-width: 50vw;" class="col-md-12 img-container">
+            <img src=<%= url(@post.image_url) %>>
+          </div>
+          <div class="col-md-12 px-3">
+            <div class="card-block px-3">
+              <p class="card-text"><%= @post.content.gsub(/\r?\n/, '<br />') %></p>
+            </div>
+          </div>
+        <% else %>
+          <div class="col-md-12 px-3">
+            <div class="card-block px-3">
+              <h4 class="card-title">
+                <%= @post.title %>
+              </h4>
+              <h5 class="card-text">
+                <a href="/user/<%= @post.user_id %>/posts">
+                  <%= @post.user.firstname %> <%= @post.user.lastname %>
+                </a>
+              </h5>
+              <h6 class="card-text"><%= @post.datetime.strftime("%B %d, %Y") %>, <%= @post.datetime.strftime("%I:%M%p") %> UTC</h6>
+              <p class="card-text"><%= @post.content.gsub(/\r?\n/, '<br />') %></p>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</section>

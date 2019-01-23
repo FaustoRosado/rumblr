@@ -1,7 +1,104 @@
 <% if session[:user_id] %>
-<% if @posts && @posts.length > 0 %>
-<div id="front-page" class="container">
+    <% if @posts && @posts.length > 0 %>
+    <div id="front-page" class="container">
       <div id="front-page-header">
-        <h3>Latest posts</h3>
+        <h3>Most Recent Posts</h3>
         <button onclick="location.href='/user/posts/new'" class="btn btn-info">Add post</button>
       </div>
+      <div id="posts-container" class="container">
+        <% @posts.each do |post| %>
+          <section>
+            <div class="container py-3 horizontal">
+              <div class="card">
+                <div class="row inner-card">
+                  <% if post.image_url.length > 0 %>
+                    <div class="col-md-4 img-container">
+                      <img src=<%= url(post.image_url) %>>
+                    </div>
+                    <div class="col-md-8 px-3">
+                      <div class="card-block px-3">
+                        <h4 class="card-title">
+                          <a href="/user/<%= post.user_id %>/posts/<%= post.id %>"><%= post.title %></a>
+                        </h4>
+                        <h5 class="card-text">
+                          <a href="/user/<%= post.user_id %>/posts">
+                            <%= post.user.firstname %> <%= post.user.lastname %>
+                          </a>
+                        </h5>
+                        <h6 class="card-text"><%= post.datetime.strftime("%B %d, %Y") %>, <%= post.datetime.strftime("%I:%M%p") %> UTC</h6>
+                        <p class="card-text card-content"><%= post.content.gsub(/\r?\n/, '<br />') %></p>
+                      </div>
+                    </div>
+                  <% else %>
+                    <div class="col-md-12 px-3">
+                      <div class="card-block px-3">
+                        <h4 class="card-title">
+                          <a href="/user/<%= post.user_id %>/posts/<%= post.id %>"><%= post.title %></a>
+                        </h4>
+                        <h5 class="card-text">
+                          <a href="/user/<%= post.user_id %>/posts">
+                            <%= post.user.firstname %> <%= post.user.lastname %>
+                          </a>
+                        </h5>
+                        <h6 class="card-text"><%= post.datetime.strftime("%B %d, %Y") %>, <%= post.datetime.strftime("%I:%M%p") %> UTC</h6>
+                        <p class="card-text card-content"><%= post.content.gsub(/\r?\n/, '<br />') %></p>
+                      </div>
+                    </div>
+                  <% end %>
+                </div>
+              </div>
+            </div>
+          </section>
+        <% end %>
+        <%= will_paginate @paginate %>
+      <% else %>
+      <div id="front-page" style="margin: 0" class="fluid-container">
+        <div id="get-started">
+          <div id="get-started-content">
+            <h3>Create posts here.</h3>
+            <button onclick="location.href='/user/posts/new'" class="btn btn-info">New post</button>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+<% else %>
+  <div id="register" class="zoomIn">
+    <h3>Sign up and chime in!</h3>
+    <form class="login-form" action="/signup" method="post">
+      <input type="email" name="email" placeholder="Email" required/>
+      <input type="password" name="password" placeholder="Password" required/>
+      <input type="password" name="reenter_password" placeholder="Re-enter your password" required/>
+      <input type="text" name="firstname" placeholder="First name" required/>
+      <input type="text" name="lastname" placeholder="Last name" required/>
+      <span style="width:80%; white-space: nowrap">
+        Birthday: <input type="date" name="birthday" placeholder="Birthday MM-DD-YYYY" required/>
+      </span>
+      <input class="btn btn-primary user-info-btn" type="submit" value="Sign up">
+    </form>
+    <p class="text-center">
+      or <button onclick="(function(){document.getElementById('login-btn').click()})()" class="btn btn-secondary">Log in</button>
+    </p>
+  </div>
+
+  <div id="landing1">
+    <div id="landing1-content" class="landing-content fadeInDownBig">
+      <p>GameDen: share your videogame insight.</p>
+      <p>retro, current, future games</p>
+    </div>
+  </div>
+
+  <div id="landing2">
+    <div id="landing2-content" class="landing-content">
+      <p>Blog about videogames...</p>
+    </div>
+  </div>
+
+  <div id="landing3">
+    <div id="landing3-content" class="landing-content">
+      <p>...no matter the game.</p>
+    </div>
+  </div>
+
+  <script src="<%= url('scripts/index.js') %>"></script>
+<% end %>

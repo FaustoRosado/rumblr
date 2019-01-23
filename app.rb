@@ -54,3 +54,25 @@ post '/' do
   
 
   end
+
+  get '/user/posts/new' do
+    erb :new_post
+  end
+  
+  post '/posts' do
+    title = params[:title]
+    validate = Validate.post(title)
+    if validate == true
+      Post.create(
+        title: title,
+        content: params[:content],
+        user_id: session[:user_id],
+        image_url: params[:image_url],
+        datetime: Time.now.utc
+      )
+    else
+      flash[:warning] = validate
+    end
+  
+    redirect "/user/#{session[:user_id]}/posts"
+  end

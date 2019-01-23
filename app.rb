@@ -151,6 +151,24 @@ get '/user/:user_id/posts/:id/edit' do
   end
 end
 
+post '/user/:user_id/posts/:id/edit' do
+  user = session[:user_id]
+  post = Post.find(params[:id])
+
+  if user == post.user_id
+    post.update(
+      title: params[:title],
+      content: params[:content],
+      image_url: params[:image_url]
+    )
+  else
+    flash[:warning] = "You don't have the permissions to edit this post."
+  end
+
+  redirect "/user/#{params[:user_id]}/posts/#{params[:id]}"
+end
+
+
   get '/login' do
     erb :login
   end

@@ -1,4 +1,5 @@
-require_relative "../models"
+require 'lorem_ipsum_amet'
+# require_relative "../models"
 
 User.create(
   email: 'fausto@gmail.com',
@@ -23,3 +24,13 @@ User.create(
   lastname: 'D',
   birthday: '01/01/2000'
 )
+
+1..80).each do |_|
+  Post.create(
+    title: LoremIpsum.w(rand(1..4)),
+    content: LoremIpsum.random(paragraphs: rand(1..3)),
+    user_id: rand(1..3),
+    image_url: 'media/filler.jpg',
+    datetime: Time.now
+  )
+end

@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 
+gem 'lorem_ipsum_amet'
 gem 'sinatra'
 gem 'pg'
 gem 'activerecord'
